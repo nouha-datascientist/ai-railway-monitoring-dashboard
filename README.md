@@ -24,13 +24,13 @@ This project presents an AI-enhanced railway infrastructure monitoring dashboard
 ## Dashboard Screenshots
 
 ### Overview Dashboard
-![Overview Dashboard](dashboard_overview.png)
+![Overview Dashboard](Dashboard_Overview.png)
 
 ### Critical Operational State
-![Critical Operational State](critical_state.png)
+![Critical Operational State](Critical_State.png)
 
 ### Warning Operational State
-![Warning Operational State](warning_state.png)
+![Warning Operational State](Warning_State.png)
 
 ## Future Improvements
 - Real-time telemetry streaming
