@@ -2,7 +2,10 @@ from fastapi import FastAPI
 import sqlite3
 import pandas as pd
 
-app = FastAPI()
+app = FastAPI(
+    docs_url="/docs",
+    openapi_url="/openapi.json"
+)
 
 @app.get("/")
 def home():
