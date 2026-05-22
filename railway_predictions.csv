@@ -1,0 +1,11 @@
+Timestamp,Train_ID,Vibration,Temperature,Anomaly_Status,Maintenance_Status,AI_Prediction
+2026-05-01 08:00,TR001,0.21,45,Normal,Operational,Low Risk
+2026-05-01 08:05,TR002,0.24,48,Normal,Operational,Low Risk
+2026-05-01 08:10,TR003,0.9,72,Critical,Inspection Required,High Risk
+2026-05-01 08:15,TR004,0.22,46,Normal,Operational,Low Risk
+2026-05-01 08:20,TR005,0.87,70,Critical,Inspection Required,High Risk
+2026-05-01 08:25,TR006,0.23,47,Normal,Operational,Low Risk
+2026-05-01 08:30,TR007,0.25,49,Warning,Scheduled Maintenance,Low Risk
+2026-05-01 08:35,TR008,0.91,75,Critical,Inspection Required,High Risk
+2026-05-01 08:40,TR009,0.2,44,Normal,Operational,Low Risk
+2026-05-01 08:45,TR010,0.26,50,Warning,Scheduled Maintenance,Medium Risk
