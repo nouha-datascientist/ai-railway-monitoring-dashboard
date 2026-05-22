@@ -1,15 +1,55 @@
 from fastapi import FastAPI
 import sqlite3
 import pandas as pd
+import os
 
 app = FastAPI(
     docs_url="/docs",
     openapi_url="/openapi.json"
 )
 
+# ---------------------------------------------------
+# HOME / DIAGNOSTIC ENDPOINT
+# ---------------------------------------------------
+
 @app.get("/")
 def home():
-    return {"message": "Railway AI Monitoring API Running"}
+
+    try:
+
+        files = os.listdir()
+
+        db_exists = os.path.exists("railway.db")
+
+        conn = sqlite3.connect("railway.db")
+
+        cursor = conn.cursor()
+
+        cursor.execute(
+            "SELECT name FROM sqlite_master WHERE type='table';"
+        )
+
+        tables = cursor.fetchall()
+
+        conn.close()
+
+        return {
+            "status": "running",
+            "database_exists": db_exists,
+            "files": files,
+            "tables": tables
+        }
+
+    except Exception as e:
+
+        return {
+            "status": "error",
+            "error": str(e)
+        }
+
+# ---------------------------------------------------
+# TELEMETRY ENDPOINT
+# ---------------------------------------------------
 
 @app.get(
     "/telemetry",
@@ -39,6 +79,11 @@ def get_telemetry(
     conn.close()
 
     return df.to_dict(orient="records")
+
+# ---------------------------------------------------
+# ML ANOMALIES ENDPOINT
+# ---------------------------------------------------
+
 @app.get(
     "/ml-anomalies",
     summary="Retrieve critical ML anomalies",
@@ -60,6 +105,10 @@ def get_ml_anomalies():
     conn.close()
 
     return df.to_dict(orient="records")
+
+# ---------------------------------------------------
+# ANALYTICS SUMMARY ENDPOINT
+# ---------------------------------------------------
 
 @app.get(
     "/analytics/summary",
@@ -103,8 +152,8 @@ def analytics_summary():
     conn.close()
 
     return {
-    "total_records": int(total_records),
-    "critical_anomalies": int(critical_count),
-    "average_vibration": float(round(avg_vibration, 2)),
-    "average_temperature": float(round(avg_temperature, 2))
-}
+        "total_records": int(total_records),
+        "critical_anomalies": int(critical_count),
+        "average_vibration": float(round(avg_vibration, 2)),
+        "average_temperature": float(round(avg_temperature, 2))
+    }
